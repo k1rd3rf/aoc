@@ -7,8 +7,8 @@ const inputs = readFileSync(getAbsolutePath("inputs.txt"), "utf8");
 
 const data = inputs
   .split(/\n\n/)
-  .map((cal) => cal.split(/\n/).map((n) => parseInt(n, 10)))
-  .map((nums) => nums.reduce((a, b) => a + b, 0))
+  .map((elfRow) => elfRow.split(/\n/).map((n) => parseInt(n, 10)))
+  .map((foods) => foods.reduce((a, b) => a + b, 0))
   .sort()
   .reverse();
 
