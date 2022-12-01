@@ -12,5 +12,10 @@ const data = inputs
   .sort()
   .reverse();
 
-console.log(data[0]);
-console.log(data[0] + data[1] + data[2]);
+const [first, second, third] = data;
+
+console.log("part 1", first);
+console.log(
+  "part 2",
+  [first, second, third].reduce((a, b) => a + b, 0)
+);

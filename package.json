@@ -7,7 +7,7 @@
   },
   "scripts": {
     "lint": "eslint src/**",
-    "day01": "ts-node src/01-calories/index.ts"
+    "day01": "ts-node src/01-calories"
   },
   "devDependencies": {
     "@types/node": "^18.11.10",
