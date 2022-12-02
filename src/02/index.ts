@@ -21,6 +21,12 @@ const gameRank = (one: string, two: string) => {
   return { choiceScore, res, outcomeScore };
 };
 
+const gameRank2 = (one: string, two: string) => {
+  const choiceIndex = move.indexOf(two);
+  const { res } = gameRank(one, choices[one][choiceIndex]);
+  return res;
+};
+
 const data = inputs
   .split(/\n/)
   .map((game) => {
@@ -29,4 +35,13 @@ const data = inputs
   })
   .reduce((total, b) => total + b.res, 0);
 
+const data2 = inputs
+  .split(/\n/)
+  .map((game) => {
+    const [one, two] = game.split(" ");
+    return gameRank2(one, two);
+  })
+  .reduce((total, b) => total + b, 0);
+
 console.log("part 1", data);
+console.log("part 2", data2);
