@@ -14,7 +14,8 @@
   },
   "scripts": {
     "lint": "eslint src/**",
-    "day01": "ts-node src/01"
+    "day01": "ts-node src/01",
+    "day02": "ts-node src/02"
   },
   "devDependencies": {
     "@types/node": "^18.11.10",
