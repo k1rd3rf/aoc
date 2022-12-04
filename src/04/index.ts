@@ -8,7 +8,7 @@ const inputs = readFileSync(getAbsolutePath("inputs.txt"), "utf8");
 const numberRange = (size, startAt = 0) => [...Array(size).keys()].map((i) => i + startAt);
 const range = (n: { from: number; to: number }) => numberRange(n.to - n.from + 1, n.from);
 
-const data = inputs
+const ranges = inputs
   .split(/\n/)
   .map((l) => l.match("(\\d+)-(\\d+),(\\d+)-(\\d+)"))
   .map(([_, a1, a2, b1, b2]) => ({
@@ -20,15 +20,27 @@ const data = inputs
       from: parseInt(b1, 10),
       to: parseInt(b2, 10),
     },
-  }))
-  .filter(({ a, b }) => {
-    const aRange = range(a);
-    const bRange = range(b);
+  }));
 
-    const aInB = bRange.includes(a.from) && bRange.includes(a.to);
-    const bInA = aRange.includes(b.from) && aRange.includes(b.to);
+const part1 = ranges.filter(({ a, b }) => {
+  const aRange = range(a);
+  const bRange = range(b);
 
-    return bInA || aInB;
-  }).length;
+  const aInB = bRange.includes(a.from) && bRange.includes(a.to);
+  const bInA = aRange.includes(b.from) && aRange.includes(b.to);
 
-console.log("part 1", data);
+  return bInA || aInB;
+}).length;
+
+const part2 = ranges.filter(({ a, b }) => {
+  const aRange = range(a);
+  const bRange = range(b);
+
+  const aInB = bRange.includes(a.from) || bRange.includes(a.to);
+  const bInA = aRange.includes(b.from) || aRange.includes(b.to);
+
+  return bInA || aInB;
+}).length;
+
+console.log("part 1", part1);
+console.log("part 2", part2);
