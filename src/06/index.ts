@@ -1,9 +1,6 @@
-import { readFileSync } from "fs";
-import { resolve } from "path";
+import getInputs from "../helpers/getInputs";
 
-const getAbsolutePath = (relativePath) => resolve(__dirname, relativePath);
-
-const inputs = readFileSync(getAbsolutePath("inputs.txt"), "utf8");
+const { input, fileName } = getInputs(__dirname);
 
 const findSequence =
   (seqSize = 4) =>
@@ -17,10 +14,11 @@ const findSequence =
       { seq: "", i: 0 }
     ).i;
 
-const lines = inputs.split(/\n/);
-
+const lines = input.split(/\n/);
 const part1 = lines.map(findSequence(4));
-console.log("part 1", part1);
-
 const part2 = lines.map(findSequence(14));
+
+console.group(`2022-day06 ${fileName}`);
+console.log("part 1", part1);
 console.log("part 2", part2);
+console.groupEnd();

@@ -1,9 +1,6 @@
-import { readFileSync } from "fs";
-import { resolve } from "path";
+import getInputs from "../helpers/getInputs";
 
-const getAbsolutePath = (relativePath) => resolve(__dirname, relativePath);
-
-const inputs = readFileSync(getAbsolutePath("inputs.txt"), "utf8");
+const { input, fileName } = getInputs(__dirname);
 
 const move = ["X", "Y", "Z"];
 
@@ -27,7 +24,7 @@ const gameRank2 = (one: string, two: string) => {
   return res;
 };
 
-const data = inputs
+const part1 = input
   .split(/\n/)
   .map((game) => {
     const [one, two] = game.split(" ");
@@ -35,7 +32,7 @@ const data = inputs
   })
   .reduce((total, b) => total + b.res, 0);
 
-const data2 = inputs
+const part2 = input
   .split(/\n/)
   .map((game) => {
     const [one, two] = game.split(" ");
@@ -43,5 +40,7 @@ const data2 = inputs
   })
   .reduce((total, b) => total + b, 0);
 
-console.log("part 1", data);
-console.log("part 2", data2);
+console.group(`2022-day02 ${fileName}`);
+console.log("part 1", part1);
+console.log("part 2", part2);
+console.groupEnd();

@@ -1,11 +1,8 @@
-import { readFileSync } from "fs";
-import { resolve } from "path";
+import getInputs from "../helpers/getInputs";
 
-const getAbsolutePath = (relativePath) => resolve(__dirname, relativePath);
+const { input, fileName } = getInputs(__dirname);
 
-const inputs = readFileSync(getAbsolutePath("inputs.txt"), "utf8");
-
-const [instructions, moves] = inputs.split(/\n\n/);
+const [instructions, moves] = input.split(/\n\n/);
 
 const initState = instructions.split(/\n/).map((row) =>
   row
@@ -54,5 +51,7 @@ const part2 = parsedMoves
   .map((r) => r.at(-1))
   .join("");
 
+console.group(`2022-day05 ${fileName}`);
 console.log("part 1", part1);
 console.log("part 2", part2);
+console.groupEnd();

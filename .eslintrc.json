@@ -24,6 +24,12 @@
   },
   "overrides": [
     {
+      "files": ["**/*.ts"],
+      "rules": {
+        "import/extensions": "off"
+      }
+    },
+    {
       "files": ["**/*.json"],
       "rules": {
         "no-unused-expressions": "off"

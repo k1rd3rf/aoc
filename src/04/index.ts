@@ -1,14 +1,11 @@
-import { readFileSync } from "fs";
-import { resolve } from "path";
+import getInputs from "../helpers/getInputs";
 
-const getAbsolutePath = (relativePath) => resolve(__dirname, relativePath);
-
-const inputs = readFileSync(getAbsolutePath("inputs.txt"), "utf8");
+const { input, fileName } = getInputs(__dirname);
 
 const numberRange = (size, startAt = 0) => [...Array(size).keys()].map((i) => i + startAt);
 const range = (n: { from: number; to: number }) => numberRange(n.to - n.from + 1, n.from);
 
-const ranges = inputs
+const ranges = input
   .split(/\n/)
   .map((l) => l.match(/(\d+)-(\d+),(\d+)-(\d+)/))
   .map(([_, a1, a2, b1, b2]) => ({
@@ -40,5 +37,7 @@ const part2 = ranges.filter(({ a, b }) => {
   return bInA || aInB;
 }).length;
 
+console.group(`2022-day04 ${fileName}`);
 console.log("part 1", part1);
 console.log("part 2", part2);
+console.groupEnd();
