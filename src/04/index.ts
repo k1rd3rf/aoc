@@ -8,7 +8,7 @@ const range = (n: { from: number; to: number }) => numberRange(n.to - n.from + 1
 const ranges = input
   .split(/\n/)
   .map((l) => l.match(/(\d+)-(\d+),(\d+)-(\d+)/))
-  .map(([_, a1, a2, b1, b2]) => ({
+  .map(([, a1, a2, b1, b2]) => ({
     a: {
       from: parseInt(a1, 10),
       to: parseInt(a2, 10),

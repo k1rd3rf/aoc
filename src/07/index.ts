@@ -7,8 +7,10 @@ enum CMD {
   CD = "$ cd ",
   LS = "$ ls",
 }
-type FS = { cwd: string[]; fs: object; prevCmd?: CMD };
+type Folder = { [path: string]: Folder | number } | number;
+type FS = { cwd: string[]; fs: Folder; prevCmd?: CMD };
 type DirSizes = { [p: string]: number };
+type DirSize = { size: number; pwd: string[] };
 
 const goToDir = (cwd: string[], cmd: string): string[] => {
   const path = cmd.replaceAll(CMD.CD, "");
@@ -18,17 +20,17 @@ const goToDir = (cwd: string[], cmd: string): string[] => {
   return [...cwd, path];
 };
 
-const modifyObject = (fs: object, cwd: string[], value: object | number): object => {
+const modifyObject = (fs: Folder, cwd: string[], value: Folder | number): Folder => {
   const [pwd, ...restCwd] = cwd;
   return {
-    ...fs,
+    ...(fs as object),
     [pwd]: restCwd.length > 0 ? modifyObject(fs[pwd], restCwd, value) : value,
   };
 };
 
-const createDir = (fs: object, cwd: string[], dirName: string): object => modifyObject(fs, [...cwd, dirName], {});
+const createDir = (fs: Folder, cwd: string[], dirName: string): Folder => modifyObject(fs, [...cwd, dirName], {});
 
-const addFile = (fs: object, cwd: string[], size: string, name: string) =>
+const addFile = (fs: Folder, cwd: string[], size: string, name: string): Folder =>
   modifyObject(fs, [...cwd, name], Number(size));
 
 const getFileStructure = (inputs: string[]): FS =>
@@ -50,23 +52,20 @@ const getFileStructure = (inputs: string[]): FS =>
       }
       return { ...state };
     },
-    { cwd: [], fs: { "/": {} }, prevCmd: undefined }
+    { cwd: [], fs: { "/": {} }, prevCmd: undefined } as FS
   );
 
-const dirSizes = (fs: object, cwd: string[]): { size: number; pwd: string[] }[] =>
-  Object.keys(fs).flatMap((p) => {
-    const size = parseInt(fs[p], 10);
-    const pwd = [...cwd, p];
-    if (Number.isNaN(size)) {
-      return dirSizes(fs[p], pwd);
-    }
-    return { size, pwd };
+const dirSizes = (folder: Folder, cwd: string[]): DirSize[] =>
+  Object.entries(folder).flatMap(([path, value]) => {
+    const size = parseInt(value, 10);
+    const pwd = [...cwd, path];
+    return Number.isNaN(size) ? dirSizes(value, pwd) : { size, pwd };
   });
 
 const potentialDirTotalSize = (sizes: DirSizes, maxSize: number) =>
   Object.values(sizes).reduce((a, k) => a + (k > maxSize ? 0 : k), 0);
 
-const sumDirectories = (sizes: { size: number; pwd: string[] }[]): DirSizes =>
+const sumDirectories = (sizes: DirSize[]): DirSizes =>
   sizes.reduce(
     (state, { size, pwd }) =>
       pwd.reduce((p, f, i) => {
@@ -74,7 +73,7 @@ const sumDirectories = (sizes: { size: number; pwd: string[] }[]): DirSizes =>
         const prevSize = p[key] || 0;
 
         return { ...p, [key]: prevSize + size };
-      }, state),
+      }, state as DirSize),
     {}
   );
 

@@ -43,8 +43,7 @@ const part2 = parsedMoves
       const pops = range(cnt)
         .map(() => prev[from].pop())
         .reverse();
-      prev[to] = [...prev[to], ...pops];
-      return prev;
+      return [...prev.slice(0, to), [...prev[to], ...pops], ...prev.slice(to + 1, prev.length)];
     },
     [...rotated.map((r) => [...r])]
   )
