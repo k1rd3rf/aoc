@@ -65,21 +65,30 @@ const dirSizes = (fs: object, cwd: string[]): { size: number; pwd: string[] }[] 
 
 const potentialDirTotalSize = (sizes: DirSizes, maxSize: number) =>
   Object.values(sizes).reduce((a, k) => a + (k > maxSize ? 0 : k), 0);
-const sumDirectories = (sizes: { size: number; pwd: string[] }[]): DirSizes =>
-  sizes.reduce((state, { size, pwd }) => {
-    return pwd.reduce((p, f, i) => {
-      const key = pwd.slice(1, i).join("/");
-      const prevSize = p[key] || 0;
 
-      return { ...p, [key]: prevSize + size };
-    }, state);
-  }, {});
+const sumDirectories = (sizes: { size: number; pwd: string[] }[]): DirSizes =>
+  sizes.reduce(
+    (state, { size, pwd }) =>
+      pwd.reduce((p, f, i) => {
+        const key = ["/", ...pwd.slice(0, i)].join("/").replace("//", "/");
+        const prevSize = p[key] || 0;
+
+        return { ...p, [key]: prevSize + size };
+      }, state),
+    {}
+  );
 
 const traverseFs = getFileStructure(input.split(/\n/));
-const sizesOnDisk = sumDirectories(dirSizes(traverseFs.fs, []));
-const part1 = potentialDirTotalSize(sizesOnDisk, 100000);
+const sizeOfDirs = dirSizes(traverseFs.fs["/"], []);
+const sumOfDirs = sumDirectories(sizeOfDirs);
 
-const part2 = "";
+const part1 = potentialDirTotalSize(sumOfDirs, 100000);
+
+const usedSpace = sumOfDirs["/"];
+const freeSpace = 70000000 - usedSpace;
+const needed = 30000000 - freeSpace;
+
+const part2 = Math.min(...Object.values(sumOfDirs).filter((s) => s > needed));
 
 console.group(`2022-day07 ${fileName}`);
 console.log("part 1", part1);
