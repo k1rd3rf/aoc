@@ -38,7 +38,26 @@ const allTrees = surroundings.map(isVisible);
 
 const part1 = allTrees.filter((i) => !i.visible).length;
 
-const part2 = "";
+const locationScores = allTrees.map(({ neighbours, treeHeight }) =>
+  neighbours
+    .map(
+      (neighboursInDirection) =>
+        neighboursInDirection.reduce(
+          ({ done, score }, th) => {
+            if (done) {
+              return { done, score };
+            }
+            return { score: score + 1, done: th >= treeHeight };
+          },
+          {
+            score: 0,
+            done: false,
+          }
+        ).score
+    )
+    .reduce(Math.imul)
+);
+const part2 = Math.max(...locationScores);
 
 console.group(`2022-day08 ${fileName}`);
 console.log("part 1", part1);
