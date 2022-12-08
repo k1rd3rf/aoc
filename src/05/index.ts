@@ -1,4 +1,5 @@
 import getInputs from "../helpers/getInputs";
+import rotateMatrix from "../helpers/rotateMatrix";
 
 const { input, fileName } = getInputs(__dirname);
 
@@ -17,8 +18,7 @@ const range = (size, add = 0) => [...new Array(size).keys()].map((i) => i + add)
 const cols = parseInt(initState.at(-1).at(-1), 10);
 const matrix = initState.slice(0, initState.length - 1).map((r) => range(cols).map((a) => r[a]));
 
-const rot = matrix[0].map((val, index) => matrix.map((row) => row[index]).reverse());
-const rotated = rot.map((row) => row.filter((i) => !!i));
+const rotated = rotateMatrix(matrix).map((row) => row.filter((i) => !!i));
 
 const parsedMoves = moves.split(/\n/).map((move) => {
   const [, cnt, from, to] = move.match(/move (\d+) from (\d+) to (\d+)/);
