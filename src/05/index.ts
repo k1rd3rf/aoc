@@ -1,5 +1,6 @@
 import getInputs from "../helpers/getInputs";
 import rotateMatrix from "../helpers/rotateMatrix";
+import range from "../helpers/numberRange";
 
 const { input, fileName } = getInputs(__dirname);
 
@@ -13,7 +14,6 @@ const initState = instructions.split(/\n/).map((row) =>
     .map((r) => r.replaceAll("[", "").replaceAll("]", ""))
     .map((r) => r.trim())
 );
-const range = (size, add = 0) => [...new Array(size).keys()].map((i) => i + add);
 
 const cols = parseInt(initState.at(-1).at(-1), 10);
 const matrix = initState.slice(0, initState.length - 1).map((r) => range(cols).map((a) => r[a]));

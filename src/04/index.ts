@@ -1,9 +1,7 @@
 import getInputs from "../helpers/getInputs";
+import range from "../helpers/fromToRange";
 
 const { input, fileName } = getInputs(__dirname);
-
-const numberRange = (size, startAt = 0) => [...Array(size).keys()].map((i) => i + startAt);
-const range = (n: { from: number; to: number }) => numberRange(n.to - n.from + 1, n.from);
 
 const ranges = input
   .split(/\n/)
