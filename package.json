@@ -22,6 +22,7 @@
     "day06": "ts-node src/06",
     "day07": "ts-node src/07",
     "day08": "ts-node src/08",
+    "day09": "ts-node src/09",
     "2022": "ts-node src"
   },
   "devDependencies": {
