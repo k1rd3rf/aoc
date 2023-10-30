@@ -7,36 +7,28 @@
   "private": "true",
   "license": "MIT",
   "dependencies": {
-    "lodash": "^4.17.21",
-    "ts-node": "^10.9.1",
-    "tsc": "^2.0.4",
-    "typescript": "^4.9.5"
+    "lodash": "4.17.x",
+    "ts-node": "10.9.x",
+    "tsc": "2.0.x",
+    "typescript": "5.3.x"
   },
   "scripts": {
     "lint": "eslint src/**",
     "day01": "ts-node src/01",
-    "day02": "ts-node src/02",
-    "day03": "ts-node src/03",
-    "day04": "ts-node src/04",
-    "day05": "ts-node src/05",
-    "day06": "ts-node src/06",
-    "day07": "ts-node src/07",
-    "day08": "ts-node src/08",
-    "day09": "ts-node src/09",
-    "2022": "ts-node src"
+    "2023": "ts-node src"
   },
   "devDependencies": {
-    "@types/node": "^20.8.7",
-    "@typescript-eslint/eslint-plugin": "^5.62.0",
-    "@typescript-eslint/parser": "^5.62.0",
-    "eslint": "^8.52.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-airbnb-typescript": "^17.1.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-import": "^2.29.0",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-prettier": "^5.0.1",
-    "eslint-plugin-react": "^7.33.2",
-    "prettier": "^3.0.3"
+    "@types/node": "20.10.x",
+    "@typescript-eslint/eslint-plugin": "6.13.x",
+    "@typescript-eslint/parser": "6.13.x",
+    "eslint": "8.54.x",
+    "eslint-config-airbnb": "19.0.x",
+    "eslint-config-airbnb-typescript": "17.1.x",
+    "eslint-config-prettier": "9.0.x",
+    "eslint-plugin-import": "2.29.x",
+    "eslint-plugin-jsx-a11y": "6.8.x",
+    "eslint-plugin-prettier": "5.0.x",
+    "eslint-plugin-react": "7.33.x",
+    "prettier": "3.1.x"
   }
 }
