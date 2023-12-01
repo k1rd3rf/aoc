@@ -4,7 +4,7 @@ on:
   pull_request:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build-and-validate:
@@ -26,5 +26,8 @@ jobs:
       - name: Lint
         run: yarn lint
 
-      - name: Run
+      - name: Run 2022
         run: yarn 2022
+
+      - name: Run 2023
+        run: yarn 2023
