@@ -1,4 +1,4 @@
-import getInputs from "../helpers/getInputs";
+import getInputs from "../../helpers/getInputs";
 
 const { input, fileName } = getInputs(__dirname);
 

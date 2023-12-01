@@ -1,5 +1,5 @@
-import getInputs from "../helpers/getInputs";
-import numberRange from "../helpers/numberRange";
+import getInputs from "../../helpers/getInputs";
+import numberRange from "../../helpers/numberRange";
 
 const { input, fileName } = getInputs(__dirname);
 

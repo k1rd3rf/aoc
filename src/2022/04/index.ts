@@ -1,5 +1,5 @@
-import getInputs from "../helpers/getInputs";
-import range from "../helpers/fromToRange";
+import getInputs from "../../helpers/getInputs";
+import range from "../../helpers/fromToRange";
 
 const { input, fileName } = getInputs(__dirname);
 

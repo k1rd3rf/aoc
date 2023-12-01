@@ -1,6 +1,6 @@
-import getInputs from "../helpers/getInputs";
-import rotateMatrix from "../helpers/rotateMatrix";
-import range from "../helpers/numberRange";
+import getInputs from "../../helpers/getInputs";
+import rotateMatrix from "../../helpers/rotateMatrix";
+import range from "../../helpers/numberRange";
 
 const { input, fileName } = getInputs(__dirname);
 

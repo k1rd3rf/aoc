@@ -1,5 +1,5 @@
-import getInputs from "../helpers/getInputs";
-import rotateMatrix from "../helpers/rotateMatrix";
+import getInputs from "../../helpers/getInputs";
+import rotateMatrix from "../../helpers/rotateMatrix";
 
 const { input, fileName } = getInputs(__dirname);
 
@@ -24,7 +24,7 @@ const surroundings: Surroundings[] = grid.flatMap((row: number[], r) =>
     const down = rotatedGrid[c].slice(0, row.length - r - 1).reverse();
     const left = row.slice(0, c).reverse();
     return { neighbours: [up, left, right, down], treeHeight, r, c };
-  })
+  }),
 );
 
 const isVisible = ({ neighbours, treeHeight, ...surr }: Surroundings): SurroundingsWithVisible => ({
@@ -52,10 +52,10 @@ const locationScores = allTrees.map(({ neighbours, treeHeight }) =>
           {
             score: 0,
             done: false,
-          }
-        ).score
+          },
+        ).score,
     )
-    .reduce(Math.imul)
+    .reduce(Math.imul),
 );
 const part2 = Math.max(...locationScores);
 
