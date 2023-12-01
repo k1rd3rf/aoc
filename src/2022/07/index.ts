@@ -52,7 +52,7 @@ const getFileStructure = (inputs: string[]): FS =>
       }
       return { ...state };
     },
-    { cwd: [], fs: { "/": {} }, prevCmd: undefined } as FS
+    { cwd: [], fs: { "/": {} }, prevCmd: undefined } as FS,
   );
 
 const dirSizes = (folder: Folder, cwd: string[]): DirSize[] =>
@@ -74,7 +74,7 @@ const sumDirectories = (sizes: DirSize[]): DirSizes =>
 
         return { ...p, [key]: prevSize + size };
       }, state as DirSize),
-    {}
+    {},
   );
 
 const traverseFs = getFileStructure(input.split(/\n/));

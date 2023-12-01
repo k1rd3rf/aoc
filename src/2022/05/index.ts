@@ -12,7 +12,7 @@ const initState = instructions.split(/\n/).map((row) =>
     .flat()
     .filter((r) => r !== "")
     .map((r) => r.replaceAll("[", "").replaceAll("]", ""))
-    .map((r) => r.trim())
+    .map((r) => r.trim()),
 );
 
 const cols = parseInt(initState.at(-1).at(-1), 10);
@@ -32,7 +32,7 @@ const part1 = parsedMoves
         p[to].push(p[from].pop());
         return p;
       }, prev),
-    [...rotated.map((r) => [...r])]
+    [...rotated.map((r) => [...r])],
   )
   .map((r) => r.at(-1))
   .join("");
@@ -45,7 +45,7 @@ const part2 = parsedMoves
         .reverse();
       return [...prev.slice(0, to), [...prev[to], ...pops], ...prev.slice(to + 1, prev.length)];
     },
-    [...rotated.map((r) => [...r])]
+    [...rotated.map((r) => [...r])],
   )
   .map((r) => r.at(-1))
   .join("");

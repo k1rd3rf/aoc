@@ -65,7 +65,7 @@ const uniqueTailVisits = (knots) =>
 
         return { head, tails, visits: [...prevVisits, tails.at(-1)] };
       }, state),
-    { head: initialState, tails: numberRange(knots).map(() => initialState), visits: [] }
+    { head: initialState, tails: numberRange(knots).map(() => initialState), visits: [] },
   );
 
 const getUnique = ({ visits }: { visits: Position[] }) => new Set(visits.map(({ r, c }) => `${r},${c}`));

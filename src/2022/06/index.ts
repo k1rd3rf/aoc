@@ -11,7 +11,7 @@ const findSequence =
         if (new Set(prev.seq.split("").slice(i - seqSize, i)).size === seqSize) return { i };
         return { seq: prev.seq + c };
       },
-      { seq: "", i: 0 }
+      { seq: "", i: 0 },
     ).i;
 
 const lines = input.split(/\n/);

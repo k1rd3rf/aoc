@@ -25,7 +25,7 @@ const part2 = Array.from(Array(sacks.length / 3).keys())
       a
         .split("")
         .filter((item) => b.includes(item) && c.includes(item))
-        .sort((x, y) => x.length - y.length)[0][0]
+        .sort((x, y) => x.length - y.length)[0][0],
   )
   .map(characterRank)
   .reduce((a, b) => a + b);
