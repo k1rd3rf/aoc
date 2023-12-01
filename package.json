@@ -16,7 +16,7 @@
     "lint": "eslint src/**",
     "day01": "ts-node src/2023/01",
     "2022": "ts-node src/2022",
-    "2023": "ts-node src"
+    "2023": "ts-node src/2023"
   },
   "devDependencies": {
     "@types/node": "20.10.x",
