@@ -40,5 +40,10 @@ const getData = (requiredCount: Cube) =>
 
 console.group(`2023-day02 ${fileName}`);
 console.log("part 1", getData({ red: 12, green: 13, blue: 14 }));
-// console.log("part 2", JSON.stringify(getData(), null, 2));
+console.log(
+  "part 2",
+  getRevealed()
+    .map(({ cubes }) => Object.values(cubes).reduce((a, b) => a * b, 1))
+    .reduce((a, b) => a + b, 0),
+);
 console.groupEnd();
