@@ -17,6 +17,7 @@
     "day01": "ts-node src/2023/01",
     "day02": "ts-node src/2023/02",
     "day03": "ts-node src/2023/03",
+    "day04": "ts-node src/2023/04",
     "2022": "ts-node src/2022",
     "2023": "ts-node src/2023"
   },
