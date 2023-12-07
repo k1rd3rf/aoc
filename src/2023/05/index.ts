@@ -19,8 +19,8 @@ const rowMaps = rows.map((r) => {
     .filter((s) => !!s)
     .map((s2) => {
       const [d, s, l] = s2.split(/\s/).map((n) => parseInt(n, 10));
-      const dR = { from: d, to: d + l - 1 };
-      const sR = { from: s, to: s + l - 1 };
+      const dR = { from: d, to: d + l };
+      const sR = { from: s, to: s + l };
       return { src, dst, d, dR, s, sR, l };
     });
 
@@ -52,10 +52,6 @@ const seedRoutes = [...seeds].map(
   -1,
 );
 
-console.log("part 1", seedRoutes.sort()[0]);
+console.log("part 1", seedRoutes.sort((a, b) => a - b)[0]);
 
 console.groupEnd();
-// 1011130144 to high
-// 3792360519 to high
-
-// 1044814787
