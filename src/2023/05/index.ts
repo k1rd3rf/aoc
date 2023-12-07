@@ -36,22 +36,58 @@ const rowMaps = rows.map((r) => {
 
 console.group(`2023-day05 ${fileName}`);
 
-const seedRoutes = [...seeds].map(
-  (u) =>
-    rowMaps.reduce((find, { maps }) => {
-      const index = maps.sR.findIndex(({ from, to }) => find > from && find < to);
+const getSeedRoutes = (seedList: number[]): number[] =>
+  seedList.map(
+    (u) =>
+      rowMaps.reduce((find, { maps }) => {
+        const index = maps.sR.findIndex(({ from, to }) => find > from && find < to);
 
-      if (index >= 0) {
-        const sR = maps.sR[index];
-        const dR = maps.dR[index];
-        return dR.from + Math.abs(find - sR.from);
-      }
+        if (index >= 0) {
+          const sR = maps.sR[index];
+          const dR = maps.dR[index];
+          return dR.from + Math.abs(find - sR.from);
+        }
 
-      return find;
-    }, u),
-  -1,
-);
+        return find;
+      }, u),
+    -1,
+  );
 
-console.log("part 1", seedRoutes.sort((a, b) => a - b)[0]);
+const sortList = (locations: number[]) => locations.sort((a, b) => a - b);
 
+const part1 = sortList(getSeedRoutes(seeds))[0];
+console.log("part 1", part1);
+
+/*
+const getSeedRanges = (seedList: number[]) =>
+  seedList.reduce(
+    (a, b) => {
+      if (a.prev) return { seedRanges: [...a.seedRanges, [a.prev, b]], prev: undefined };
+      return { seedRanges: a.seedRanges, prev: b };
+    },
+    { seedRanges: [] as number[][], prev: undefined as number | undefined },
+  ).seedRanges;
+
+const seedRanges = getSeedRanges(seeds);
+console.log({ seedRanges });
+
+const a = seedRanges.reduce((low, [from, to]) => {
+  console.group({ from, to }, low);
+
+  let newLow = low;
+  for (let i = from; i < from + to; ) {
+    const [s] = getSeedRoutes([from]);
+    if (s <= newLow) {
+      newLow = s;
+      console.log({ i, newLow });
+    }
+    i += 1;
+  }
+  console.groupEnd();
+
+  return newLow;
+}, 23738617);
+
+console.log("part 2", a);
 console.groupEnd();
+ */
