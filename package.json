@@ -26,7 +26,7 @@
     "@types/node": "20.10.x",
     "@typescript-eslint/eslint-plugin": "6.13.x",
     "@typescript-eslint/parser": "6.13.x",
-    "eslint": "8.55.x",
+    "eslint": "8.56.x",
     "eslint-config-airbnb": "19.0.x",
     "eslint-config-airbnb-typescript": "17.1.x",
     "eslint-config-prettier": "9.1.x",
