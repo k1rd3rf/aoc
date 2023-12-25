@@ -32,7 +32,7 @@
     "eslint-config-prettier": "9.1.x",
     "eslint-plugin-import": "2.29.x",
     "eslint-plugin-jsx-a11y": "6.8.x",
-    "eslint-plugin-prettier": "5.0.x",
+    "eslint-plugin-prettier": "5.1.x",
     "eslint-plugin-react": "7.33.x",
     "prettier": "3.1.x"
   }
