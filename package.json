@@ -10,7 +10,7 @@
     "lodash": "4.17.x",
     "ts-node": "10.9.x",
     "tsc": "2.0.x",
-    "typescript": "5.3.x"
+    "typescript": "5.4.x"
   },
   "scripts": {
     "lint": "eslint src/**",
