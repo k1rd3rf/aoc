@@ -23,7 +23,7 @@
     "2023": "ts-node src/2023"
   },
   "devDependencies": {
-    "@types/node": "20.11.x",
+    "@types/node": "20.12.x",
     "@typescript-eslint/eslint-plugin": "6.21.x",
     "@typescript-eslint/parser": "6.21.x",
     "eslint": "8.57.x",
